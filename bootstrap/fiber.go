@@ -7,18 +7,19 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 )
 
-func newFiber() *fiber.App {
+func newFiber(errorHandler fiber.ErrorHandler) *fiber.App {
 	app := fiber.New(fiber.Config{
-		AppName: getApplicationName(),
+		AppName:      getApplicationName(),
+		ErrorHandler: errorHandler,
 	})
 
 	app.Use(logger.New())
 	app.Use(recover.New())
 
-	app.Use(cors.Config{
-		AllowOrigins: getAllowedOrigins(),
-		AllowMethods: getAllowedMethods(),
-	})
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: getAllowOrigins(),
+		AllowMethods: getAllowMethods(),
+	}))
 
 	return app
 }

@@ -40,6 +40,9 @@ func (e *Error) Code() StatusCode { return e.code }
 // SetCode sets the code field
 func (e *Error) SetCode(code StatusCode) { e.code = code }
 
+// HasCode returns true if the struct has the code field
+func (e *Error) HasCode() bool { return e.code != "" }
+
 // Where gets the where field
 func (e *Error) Where() string { return e.where }
 
@@ -64,6 +67,12 @@ func (e *Error) APIMessage() string { return e.apiMessage }
 // SetAPIMessage sets the api message field
 func (e *Error) SetAPIMessage(message string) { e.apiMessage = message }
 
+// SetErrorAsAPIMessage sets the error fields as the api message
+func (e *Error) SetErrorAsAPIMessage() { e.apiMessage = fmt.Sprintf("%v", e.err) }
+
+// HasAPIMessage returns true if the struct has the api message field
+func (e *Error) HasAPIMessage() bool { return e.apiMessage != "" }
+
 // StatusHTTP gets the status http field
 func (e *Error) StatusHTTP() int { return e.statusHTTP }
 
@@ -78,3 +87,6 @@ func (e *Error) Data() interface{} { return e.data }
 
 // SetData sets the data field
 func (e *Error) SetData(data interface{}) { e.data = data }
+
+// HasData returns true if the struct has the data field
+func (e *Error) HasData() bool { return e.data != nil }
