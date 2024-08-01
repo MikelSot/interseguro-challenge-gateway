@@ -3,7 +3,6 @@ module github.com/MikelSot/interseguro-challenge-gateway
 go 1.22
 
 require (
-	github.com/MikelSot/interseguro-challenge-auth v0.0.0-20240801165824-846483d7b31f
 	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/joho/godotenv v1.5.1
 	github.com/sirupsen/logrus v1.9.3
