@@ -2,6 +2,10 @@ github.com/AJRDRGZ/db-query-builder v1.1.1 h1:ZSp7E/PZFwPqzO3xuRp7YRXD9hcdOVZUyS
 github.com/AJRDRGZ/db-query-builder v1.1.1/go.mod h1:Dyx2fYujoko0w86l0d+k4HbeIHf/PU8lP5lOL0sDFpI=
 github.com/MikelSot/interseguro-challenge-auth v0.0.0-20240801040945-1c89498b9c81 h1:ZLMDHGQFPrjuHjhSs7/zAiJkFWUQ/7WONLQCCm7A5+U=
 github.com/MikelSot/interseguro-challenge-auth v0.0.0-20240801040945-1c89498b9c81/go.mod h1:6+pD8U2iphXTV5sTxisBj+5htIqvstVnMIrXC2eYb4Q=
+github.com/MikelSot/interseguro-challenge-auth v0.0.0-20240801045310-131220049692 h1:GEIsxT5k0Ci+OCLQ6sbExDoYUCqbxT7809THhE5fvFY=
+github.com/MikelSot/interseguro-challenge-auth v0.0.0-20240801045310-131220049692/go.mod h1:6+pD8U2iphXTV5sTxisBj+5htIqvstVnMIrXC2eYb4Q=
+github.com/MikelSot/interseguro-challenge-auth v0.0.0-20240801165824-846483d7b31f h1:sDdx5YEOpYpIzOU2OY+14vomyaWK84mXQNfHzIzwxic=
+github.com/MikelSot/interseguro-challenge-auth v0.0.0-20240801165824-846483d7b31f/go.mod h1:6+pD8U2iphXTV5sTxisBj+5htIqvstVnMIrXC2eYb4Q=
 github.com/alexyslozada/gosqlutils v0.0.0-20200911214245-366ccd2d03d2 h1:Eaol2tzLGOyRfQdgFAQhXKhTpCUbkrcOK3GGCFuSvGs=
 github.com/alexyslozada/gosqlutils v0.0.0-20200911214245-366ccd2d03d2/go.mod h1:PRcxMvcPYsvV0hFzZ5ZI+c9mVukCPArYDMFlAw97yaA=
 github.com/andybalholm/brotli v1.1.0 h1:eLKJA0d02Lf0mVpIDgYnqXcUn0GqVmEFny3VuID1U3M=
