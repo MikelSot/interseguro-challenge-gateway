@@ -1,4 +1,4 @@
-package statistic
+package auth
 
 import (
 	"fmt"
@@ -11,21 +11,21 @@ import (
 )
 
 type handler struct {
-	proxyRouterStatistic string
+	proxyRouterAuth string
 }
 
-func newHandler(proxyRouterStatistic string) handler {
-	return handler{proxyRouterStatistic}
+func newHandler(proxyRouterAuth string) handler {
+	return handler{proxyRouterAuth}
 }
 
 func (h handler) Proxy(c *fiber.Ctx) error {
-	url := fmt.Sprintf("%s%s", h.proxyRouterStatistic, c.OriginalURL())
+	url := fmt.Sprintf("%s%s", h.proxyRouterAuth, c.OriginalURL())
 	if err := proxy.Do(c, url); err != nil {
-		log.Warn("¡Uy! Fallo al enviar la solicitud a la API Statistic", err.Error())
+		log.Warn("¡Uy! Fallo al enviar la solicitud a la API Auth", err.Error())
 
 		return c.Status(fiber.StatusBadGateway).JSON(model.MessageResponse{
 			Errors: model.Responses{
-				{Code: model.UnexpectedError, Message: "¡Uy! Fallo al enviar la solicitud a la API Statistic"},
+				{Code: model.UnexpectedError, Message: "¡Uy! Fallo al enviar la solicitud a la API Auth"},
 			},
 		})
 	}

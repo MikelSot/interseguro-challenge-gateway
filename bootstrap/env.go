@@ -1,6 +1,10 @@
 package bootstrap
 
-import "os"
+import (
+	"os"
+
+	log "github.com/sirupsen/logrus"
+)
 
 const _nameAppDefault = "interseguro-challenge-gateway"
 
@@ -14,6 +18,7 @@ const (
 const (
 	_proxyRouteQRDefault        = "/qr"
 	_proxyRouteStatisticDefault = "/statistic"
+	_proxyRouteAuthDefault      = "/auth"
 )
 
 func getApplicationName() string {
@@ -55,6 +60,8 @@ func getAllowMethods() string {
 func getProxyRouteQR() string {
 	proxyRouteQR := os.Getenv("PROXY_ROUTE_QR")
 	if proxyRouteQR == "" {
+		log.Warn("proxy route qr not found")
+
 		return _proxyRouteQRDefault
 	}
 
@@ -64,8 +71,32 @@ func getProxyRouteQR() string {
 func getProxyRouteStatistic() string {
 	proxyRouteStatistic := os.Getenv("PROXY_ROUTE_STATISTIC")
 	if proxyRouteStatistic == "" {
+		log.Warn("proxy route statistic not found")
+
 		return _proxyRouteStatisticDefault
 	}
 
 	return proxyRouteStatistic
+}
+
+func getProxyRouteAuth() string {
+	proxyRouteAuth := os.Getenv("PROXY_ROUTE_AUTH")
+	if proxyRouteAuth == "" {
+		log.Warn("proxy route auth not found")
+
+		return _proxyRouteAuthDefault
+	}
+
+	return proxyRouteAuth
+}
+
+func getSignKey() string {
+	signKey := os.Getenv("SIGN_KEY")
+	if signKey == "" {
+		log.Warn("sign key not found")
+
+		return ""
+	}
+
+	return signKey
 }

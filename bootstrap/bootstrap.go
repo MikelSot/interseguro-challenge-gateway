@@ -20,6 +20,7 @@ func Run() {
 		Logger:              logger,
 		ProxyRouteQR:        getProxyRouteQR(),
 		ProxyRouteStatistic: getProxyRouteStatistic(),
+		ProxyRouteAuth:      getProxyRouteAuth(),
 	})
 
 	log.Fatal(app.Listen(getPort()))

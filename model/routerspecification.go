@@ -9,4 +9,5 @@ type RouterSpecification struct {
 	Logger              Logger
 	ProxyRouteQR        string
 	ProxyRouteStatistic string
+	ProxyRouteAuth      string
 }
