@@ -89,14 +89,3 @@ func getProxyRouteAuth() string {
 
 	return proxyRouteAuth
 }
-
-func getSignKey() string {
-	signKey := os.Getenv("SIGN_KEY")
-	if signKey == "" {
-		log.Warn("sign key not found")
-
-		return ""
-	}
-
-	return signKey
-}

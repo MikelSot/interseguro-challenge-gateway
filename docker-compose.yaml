@@ -1,0 +1,66 @@
+version: '3.8'
+services:
+  database:
+    image: postgres:11.9-alpine
+    container_name: interseguro-db
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    networks:
+      - gateway
+    ports:
+      - "5432:5432"
+    volumes:
+      - '.data/interseguro:/var/lib/postgresql/data'
+      - '../interseguro-challenge-auth/bootstrap/init.sql:/docker-entrypoint-initdb.d/init.sql'
+
+  auth:
+    build:
+      context: ../interseguro-challenge-auth
+    container_name: interseguro-auth
+    networks:
+      - gateway
+    ports:
+      - ${PORT_AUTH}:${PORT_AUTH}
+    depends_on:
+      - database
+
+  gateway:
+    container_name: interseguro-gateway
+    build:
+      context: .
+    networks:
+      - gateway
+    ports:
+      - ${FIBER_PORT}:8080
+
+  qr:
+    build:
+      context: ../interseguro-challenge-qr
+    container_name: interseguro-qr
+    networks:
+      - gateway
+    ports:
+      - ${PORT_QR}:${PORT_QR}
+    depends_on:
+      - auth
+      - gateway
+
+  statistic:
+    build:
+      context: ../../../../../node/interseguro-challenge-statistic
+    container_name: interseguro-statistic
+    networks:
+      - gateway
+    ports:
+      - ${PORT_STATISTIC}:${PORT_STATISTIC}
+    depends_on:
+      - auth
+      - gateway
+
+networks:
+  gateway:
+    name: gateway
+
