@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: Challenge Interseguro API
+  version: 1.0.0
+  description: API para realizar la factorización QR de una matriz y obtener estadísticas.
+servers:
+  - url: http://localhost:8080
+paths:
+  /qr/api/v1/challenge:
+    post:
+      summary: Realiza la factorización QR de una matriz y obtiene estadísticas.
+      tags:
+        - QR Factorization
+      parameters:
+        - name: Authorization
+          in: header
+          description: Token de autorización
+          example: bb3ce24a-4d69-4ced-8446-e6be4f25a9d2
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatrixRequest'
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Error en la solicitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    MatrixRequest:
+      type: object
+      properties:
+        matrix:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+          example: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    SuccessResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            factorize:
+              type: object
+              properties:
+                q:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: number
+                  example:
+                    - [-0.12309149097933281, 0.9045340337332914, 0.4082482904638621]
+                    - [-0.492365963917331, 0.30151134457776285, -0.8164965809277264]
+                    - [-0.8616404368553292, -0.3015113445777631, 0.4082482904638634]
+                r:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: number
+                  example:
+                    - [-8.124038404635959, -9.601136296387955, -11.078234188139948]
+                    - [0, 0.9045340337332926, 1.809068067466583]
+                    - [0, 0, -8.881784197001252e-16]
+            statistic:
+              type: object
+              properties:
+                statistic_q:
+                  type: object
+                  properties:
+                    max_value:
+                      type: number
+                    min_value:
+                      type: number
+                    average:
+                      type: number
+                    total_sum:
+                      type: number
+                    is_diagonal:
+                      type: boolean
+                  example:
+                    max_value: 0.9045340337332914
+                    min_value: -0.8616404368553292
+                    average: -0.06361820644652252
+                    total_sum: -0.5725638580187027
+                    is_diagonal: false
+                statistic_r:
+                  type: object
+                  properties:
+                    max_value:
+                      type: number
+                    min_value:
+                      type: number
+                    average:
+                      type: number
+                    total_sum:
+                      type: number
+                    is_diagonal:
+                      type: boolean
+                  example:
+                    max_value: 1.809068067466583
+                    min_value: -11.078234188139948
+                    average: -2.8988674208848875
+                    total_sum: -26.089806787963987
+                    is_diagonal: false
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+            example:
+              code: "unexpected_error"
+              message: "¡Uy! Fallo al enviar la solicitud a la API QR"
