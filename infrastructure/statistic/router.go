@@ -24,5 +24,5 @@ func buildHandler(spec model.RouterSpecification) handler {
 func privateRoutes(app *fiber.App, handler handler, middlewares ...fiber.Handler) {
 	api := app.Group(_privateRoutePrefix, middlewares...)
 
-	api.All("", handler.Proxy)
+	api.All("/api/v1/", handler.Proxy)
 }

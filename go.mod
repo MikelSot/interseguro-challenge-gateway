@@ -10,6 +10,7 @@ require (
 
 require (
 	github.com/AJRDRGZ/db-query-builder v1.1.1 // indirect
+	github.com/MikelSot/interseguro-challenge-auth v0.0.0-20240801191127-ad7102c503a6 // indirect
 	github.com/alexyslozada/gosqlutils v0.0.0-20200911214245-366ccd2d03d2 // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
